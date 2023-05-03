@@ -7,9 +7,7 @@ const initialAuthState = {
 
 const authSlice = createSlice({
   name: "authenticationSlice",
-
   initialState: initialAuthState,
-
   reducers: {
     login(state, action) {
       localStorage.setItem("idToken", action.payload);
@@ -18,14 +16,11 @@ const authSlice = createSlice({
 
       state.idToken = action.payload;
     },
-
     logout(state) {
       localStorage.removeItem("idToken");
       localStorage.removeItem("userEmail");
       localStorage.removeItem("email");
-
       state.isLogin = false;
-
       state.idToken = null;
     },
   },

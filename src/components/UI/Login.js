@@ -138,7 +138,7 @@ export default function LogIn() {
                     </Form>
                     <div className="mt-3">
                         <p className="mb-0  text-center">
-                        Forget passward??{" "}
+                        Forgot password??{" "}
                           <Link className="text-primary fw-bold"onClick={handleForgotPassword} >Forgot Password</Link>
                         </p>
                         <p className="mb-0  text-center">

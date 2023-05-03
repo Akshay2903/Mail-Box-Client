@@ -1,16 +1,20 @@
-import './App.css';
 import { Route, Routes } from 'react-router-dom';
-import SignUp from './components/Pages/SignUp';
-import Login from './components/Pages/Login';
-import Welcome from './components/Pages/Welcome';
+import Header from './components/Header/Header';
+import SentBox from './components/Pages/SentBox';
+import LogIn from './components/UI/Login';
+import SignUp from './components/UI/SignUp';
+import Welcome from './components/UI/Welcome';
+
 
 function App() {
   return (
-    <div className="App">
+    <div>
+      <Header/>
      <Routes>
-        <Route path='/' element={<Login/>}/>
+        <Route path='/' element={<LogIn/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/welcome' element={<Welcome/>}/>
+        <Route path='/sentbox'  element={<SentBox/>}/>
      </Routes>
     </div>
   );
