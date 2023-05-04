@@ -1,13 +1,13 @@
 import React, { useEffect } from 'react'
 import { useDispatch } from 'react-redux'
-import { sentboxAction } from '../store/SentSlicer'
 import { useSelector } from 'react-redux'
+import { inboxAction } from '../store/InboxSlicer';
 
-function Sentbox() {
-    const emaildata = useSelector(state=>state.sent.sentbox);
+const Inbox = () => {
+    const emaildata = useSelector(state=>state.in.inbox);
     const dispatch = useDispatch();
     const submitHandler  = () => {
-        fetch(`https://https://mailbox-6bf49-default-rtdb.firebaseio.com/emailData/${localStorage.getItem("email")}/Sent.json`).then((res)=>{
+        fetch(`https://mailbox-6bf49-default-rtdb.firebaseio.com/emailData/${localStorage.getItem("email")}/Recieve.json`).then((res)=>{
             if(res.ok){
                 return res.json()
             }else{
@@ -32,30 +32,32 @@ function Sentbox() {
 
             console.log(data)
             //console.log(myarr)
-            dispatch(sentboxAction.setsenbox(myarr))
+            dispatch(inboxAction.setinbox(myarr))
 
 
         }).catch((err)=>{
             alert(err.message)
         })
     }
+
     useEffect(()=>{
         submitHandler();
     },[]);
 
   return (
-    
+
       <div>
     {emaildata.map((item,index)=>(
         <div key={index}>
             <p>Email:  {item.email}</p>
+            <p>Subject: {item.subject}</p>
             <p>Message: {item.message}</p>
             <hr/>
         </div>
     ))}
-    </div>
-    
+    </div> 
+
   )
 }
 
-export default Sentbox
+export default Inbox;

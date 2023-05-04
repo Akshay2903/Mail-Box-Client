@@ -4,7 +4,10 @@ import EmailForm from '../Pages/EmailForm';
 const Welcome = () => {
   return (
     <div>
-      <p>Welcome to your mail box</p>
+      <div>
+      <h3>Welcome to your mail box</h3>
+      </div>
+      <hr/>
       <EmailForm/>
     </div>
   )

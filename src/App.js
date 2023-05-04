@@ -1,5 +1,6 @@
 import { Route, Routes } from 'react-router-dom';
 import Header from './components/Header/Header';
+import Inbox from './components/Pages/Inbox';
 import SentBox from './components/Pages/SentBox';
 import LogIn from './components/UI/Login';
 import SignUp from './components/UI/SignUp';
@@ -14,6 +15,7 @@ function App() {
         <Route path='/' element={<LogIn/>}/>
         <Route path='/signup' element={<SignUp/>}/>
         <Route path='/welcome' element={<Welcome/>}/>
+        <Route path='/inbox' element={<Inbox/>}/>
         <Route path='/sentbox'  element={<SentBox/>}/>
      </Routes>
     </div>
