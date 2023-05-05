@@ -1,28 +1,27 @@
 import React, { useRef} from 'react';
 import { Form, Button } from 'react-bootstrap';
-
-
-
+import { useNavigate } from "react-router-dom";
 
 const EmailForm = () => {
+  const history = useNavigate();
   const emailinputref = useRef()
   const messageinputref = useRef()
   const subjectinputref = useRef()
-
+  
   
   const handleSubmit = (event) => {
     event.preventDefault();
-
+     
    const enteredemail = emailinputref.current.value
    const enteredmessage = messageinputref.current.value
    const entersubject = subjectinputref.current.value
    const replacedmail = enteredemail.replace('@','').replace('.','')
    localStorage.setItem('replacedmail',replacedmail)
-
-   const emaildata = {email: enteredemail, message:enteredmessage, subject:entersubject}
-
-
-
+   console.log(replacedmail)
+   
+   const emaildata = {email: localStorage.getItem("userEmail"), message:enteredmessage, subject:entersubject, show:true}
+  
+  
   fetch(`https://mailbox-6bf49-default-rtdb.firebaseio.com/emailData/${localStorage.getItem('email')}/Sent.json`,{
     method:'POST',
     body:JSON.stringify(
@@ -33,6 +32,7 @@ const EmailForm = () => {
       }
   }).then((res)=>{
     if(res.ok){
+      history('/sentbox');
         return res.json()
     }else{
         res.json().then((data)=>{
@@ -42,10 +42,7 @@ const EmailForm = () => {
                let  errormessage = 'not succesful ' + data.error.message
                throw new Error(errormessage)
             }
-        }).then((data)=>{
-            
-
-        }).catch((error)=>{
+         }).catch((error)=>{
             alert(error.message)
         })
     }
@@ -70,8 +67,6 @@ const EmailForm = () => {
                let  errormessage = 'not succesful ' + data.error.message
                throw new Error(errormessage)
             }
-        }).then((data)=>{
-
         }).catch((error)=>{
             alert(error.message)
         })
