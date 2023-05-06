@@ -24,7 +24,7 @@ const Header = (props) => {
 
       {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/inbox'>Inbox</Link></Button>}
     
-      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/sentbox'>sent box</Link></Button>}
+      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/sentbox'>Sentbox</Link></Button>}
       {show && <div style={{margin:'20px'}}><Link to="/" onClick={logoutHandler}><Button variant="outline-danger">Logout</Button></Link></div>}
       </Nav>
        </div>
