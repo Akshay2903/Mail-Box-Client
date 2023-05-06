@@ -8,6 +8,8 @@ import { useSelector } from 'react-redux';
 
 
 const Header = (props) => {
+  const Sentbox = useSelector(state=>state.sent.sentbox);
+  const Inbox = useSelector(state=>state.in.inbox);
   const dispatch = useDispatch();
   
   
@@ -22,9 +24,9 @@ const Header = (props) => {
       <Nav className="justify-content-center" activeKey="/home">
       {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/welcome'>Compose</Link></Button>}
 
-      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/inbox'>Inbox</Link></Button>}
+      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/inbox'>Inbox<sup>{Inbox.length}</sup></Link></Button>}
     
-      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/sentbox'>Sentbox</Link></Button>}
+      {show && <Button variant='outline-primary' style={{margin:'20px'}}><Link to='/sentbox'>Sentbox<sup>{Sentbox.length}</sup></Link></Button>}
       {show && <div style={{margin:'20px'}}><Link to="/" onClick={logoutHandler}><Button variant="outline-danger">Logout</Button></Link></div>}
       </Nav>
        </div>

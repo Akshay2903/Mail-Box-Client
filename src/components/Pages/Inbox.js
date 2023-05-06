@@ -23,7 +23,7 @@ const Inbox = () => {
             const myarr = []
     
             for(let i in data){
-                myarr.push({
+                myarr.unshift({
                     id:i,
                     email:data[i].email,
                     subject:data[i].subject,
@@ -31,7 +31,7 @@ const Inbox = () => {
                 })
             }
             
-            console.log(data)
+            //console.log(data)
             //console.log(myarr)
             dispatch(inboxAction.setinbox(myarr))
     
@@ -40,11 +40,15 @@ const Inbox = () => {
             alert(err.message)
         })
     }
-
-    useEffect(()=>{
+    useEffect(() => {
+      const intervalId = setInterval(() => {
         getSaveData();
-    },[]);
-
+      }, 1000);
+    console.log("Hellow World")
+      return () => {
+        clearInterval(intervalId);
+      };
+    }, []);
     
   const deleteHandler = (id) => {
     fetch(
