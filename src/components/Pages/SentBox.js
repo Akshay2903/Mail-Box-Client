@@ -7,7 +7,7 @@ function Sentbox() {
     const emaildata = useSelector(state=>state.sent.sentbox);
     const dispatch = useDispatch();
     const submitHandler  = () => {
-        fetch(`https://https://mailbox-6bf49-default-rtdb.firebaseio.com/emailData/${localStorage.getItem("email")}/Sent.json`).then((res)=>{
+        fetch(`https://mailbox-6bf49-default-rtdb.firebaseio.com/emailData/${localStorage.getItem("email")}/Sent.json`).then((res)=>{
             if(res.ok){
                 return res.json()
             }else{
@@ -20,35 +20,37 @@ function Sentbox() {
             }
         }).then((data)=>{
             const myarr = []
-
+    
             for(let i in data){
-                myarr.push({
+                myarr.unshift({
                     id:i,
                     email:data[i].email,
                     subject:data[i].subject,
                     message:data[i].message
                 })
             }
-
+            
             console.log(data)
             //console.log(myarr)
             dispatch(sentboxAction.setsenbox(myarr))
-
-
+    
+            
         }).catch((err)=>{
             alert(err.message)
         })
     }
+
     useEffect(()=>{
         submitHandler();
     },[]);
-
+   
   return (
     
       <div>
     {emaildata.map((item,index)=>(
         <div key={index}>
             <p>Email:  {item.email}</p>
+            <p>Subject: {item.subject}</p>
             <p>Message: {item.message}</p>
             <hr/>
         </div>
@@ -58,4 +60,4 @@ function Sentbox() {
   )
 }
 
-export default Sentbox
+export default Sentbox;

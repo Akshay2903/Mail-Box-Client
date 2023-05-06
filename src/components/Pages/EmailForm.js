@@ -1,8 +1,9 @@
-import React, { useRef, useState } from 'react';
+import React, { useRef } from 'react';
 import { Form, Button } from 'react-bootstrap';
-
+import { useNavigate} from "react-router-dom";
 
 const EmailForm = () => {
+  const history = useNavigate();
   const emailinputref = useRef()
   const messageinputref = useRef()
   const subjectinputref = useRef()
@@ -10,7 +11,7 @@ const EmailForm = () => {
   
   const handleSubmit = (event) => {
     event.preventDefault();
-
+     
    const enteredemail = emailinputref.current.value
    const enteredmessage = messageinputref.current.value
    const entersubject = subjectinputref.current.value
@@ -31,6 +32,7 @@ const EmailForm = () => {
       }
   }).then((res)=>{
     if(res.ok){
+      history('/sentbox');
         return res.json()
     }else{
         res.json().then((data)=>{
@@ -40,12 +42,7 @@ const EmailForm = () => {
                let  errormessage = 'not succesful ' + data.error.message
                throw new Error(errormessage)
             }
-        }).then((data)=>{
-          //  emailinputref.current.value = '';
-          //  messageinputref.current.value = '';
-          //  subjectinputref.current.value = '';
-
-        }).catch((error)=>{
+         }).catch((error)=>{
             alert(error.message)
         })
     }
@@ -70,10 +67,6 @@ const EmailForm = () => {
                let  errormessage = 'not succesful ' + data.error.message
                throw new Error(errormessage)
             }
-        }).then((data)=>{
-          // emailinputref.current.value = '';
-          // messageinputref.current.value = '';
-          // subjectinputref.current.value = '';
         }).catch((error)=>{
             alert(error.message)
         })
