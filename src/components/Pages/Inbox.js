@@ -84,7 +84,6 @@ const Inbox = () => {
             <Button variant="danger" style={{float:'right'}} onClick={()=> deleteHandler(item.id)}>Delete</Button>
             </p>
             <hr/>
-            
         </div>
     ))}
     </div> 
